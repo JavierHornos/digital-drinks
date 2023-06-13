@@ -66,6 +66,14 @@ h1 {
     cursor: pointer;
 }
 
+.imgLogo {
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  .imgLogo:hover {
+    filter: drop-shadow(0 0 2em #f06122  );
+  }
+
 
 /* .ingresa{
     display: none;
