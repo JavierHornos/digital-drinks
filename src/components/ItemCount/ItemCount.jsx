@@ -21,7 +21,8 @@ const ItemCount = ({inicial, stock, funcionAgregar}) => {
 
   return (
     <>
-    <p style={{color: "green"}}>Disponibles: {stock - contador}</p>
+    
+    {stock === 0 ? (<p style={{color: "red"}}>Sin Stock: {stock}</p>):(<p style={{color: "green"}}>Disponibles: {stock - contador}</p>) }
     <br/>
 
     <div className='cajaContandor'> 
