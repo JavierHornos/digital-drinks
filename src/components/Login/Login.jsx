@@ -4,12 +4,19 @@ import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../../services/config';
 import { useState, useEffect } from "react"
 import Swal from "sweetalert2";
+import CryptoJS from 'crypto-js'
 
 
 const Login = () => {
   const [usuarios, setUsuarios] = useState([]);
   const { register, handleSubmit } = useForm();
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const descifrar = (texto) => {
+    let bytes = CryptoJS.AES.decrypt(texto, 'Registro');
+    let textoDescifrado = bytes.toString(CryptoJS.enc.Utf8);
+    return textoDescifrado
+}
   
   useEffect(() => {
 
@@ -45,7 +52,7 @@ const Login = () => {
     }
 
 
-    let claveBase = userToLogin.contraseña;
+    let claveBase = descifrar(userToLogin.contraseña);
     console.log(claveBase)
     let claveBody = usuarioAEntrar.password;
     console.log(claveBody)
